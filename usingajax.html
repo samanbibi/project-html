@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COUNTRY INFORMATION</title>
+</head>
+<body>
+    <button onclick="load()">Click Here</button>
+    <div id="contry"></div>
+
+    <script>
+        const load=() => {
+         fetch ("https://restcountries.com/v3.1/all")  
+         .then(data => data.json())
+         .then(countries => {
+            let html="<table border=1>";
+                html+= `<tr>
+                         <th>Name</th>
+                          <th>Capital</th>
+                          <th> population</th>
+                         <th>timezones</th>
+                          <th>flag</th>
+                        
+                       </tr>`
+
+                       countries.map((country)=> {
+                           return html+=`<tr>
+                            <td>${country
+                                .name.common}
+                                </td>
+                            <td>${country.
+                                capital}</td>
+                            <td>${country
+                                .population}</td>
+                           <td>${country
+                            .timezones} </td>
+                            <td>${country
+                                .flag}</td>
+                            </tr>`
+                       })
+                       html+="</table>";
+
+                  document.getElementById("contry").innerHTML=
+                  html;
+                    })
+        }
+    </script>
+</body>
+</html>
